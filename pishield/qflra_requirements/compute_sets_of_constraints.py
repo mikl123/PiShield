@@ -1,10 +1,10 @@
 from typing import List, Tuple
 
-from constraints_code.classes import Variable, Constraint, Inequality
-from constraints_code.normalisation import normalise
-from constraints_code.parser import parse_constraints_file
-from constraints_code.utils_functions import split_constr_atoms
-from constraints_code.utils_atoms import collapse_atoms, multiply_coefficients_of_atoms
+from pishield.qflra_requirements.classes import Variable, Constraint, Inequality
+from pishield.qflra_requirements.normalisation import normalise
+from pishield.qflra_requirements.parser import parse_constraints_file
+from pishield.qflra_requirements.utils_functions import split_constr_atoms
+from pishield.qflra_requirements.utils_atoms import collapse_atoms, multiply_coefficients_of_atoms
 
 
 def get_pos_pos_x_constr(y: Variable, pos_constr: List[Constraint], pos_neg_constr: List[Constraint]):

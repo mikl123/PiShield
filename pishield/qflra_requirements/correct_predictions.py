@@ -11,8 +11,7 @@ from pishield.qflra_requirements.feature_orderings import set_random_ordering
 import numpy as np
 
 INFINITY = torch.inf
-INFINITY_NP = torch.tensor(np.int32(1e16))
-# INFINITY_NP = torch.tensor(np.int64(1e16))
+INFINITY_NP = torch.tensor(np.int64(1e16))
 
 
 def get_constr_at_level_x(x, sets_of_constr):
