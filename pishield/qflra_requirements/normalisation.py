@@ -5,7 +5,7 @@ import torch
 from pishield.qflra_requirements.classes import Variable, Constraint, Inequality
 from pishield.qflra_requirements.utils_atoms import collapse_atoms, multiply_coefficients_of_atoms, negate_atoms
 
-TOLERANCE=1e-2
+TOLERANCE=1e-6
 
 
 def normalise_constraint_wrt_selected_ineq(x: Variable, partially_normalised_inequality_list: List[Inequality], ineq_i: Inequality, signed_ineqs: list[Inequality], sign) -> List[Inequality]:
