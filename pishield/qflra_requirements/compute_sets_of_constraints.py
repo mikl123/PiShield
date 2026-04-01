@@ -131,6 +131,26 @@ def get_pos_neg_x_constr(y: Variable, constraints_with_y: List[Constraint]):
             neg_constr.append(constr)
     return pos_constr, neg_constr
 
+def constraint_key(c: 'Constraint'):
+    ineq_keys = []
+    for ineq in c.list_inequalities:
+        atom_keys = frozenset(
+            (a.variable.id, a.positive_sign, a.coefficient, ineq.ineq_sign, ineq.constant)
+            for a in ineq.body
+        )
+        ineq_keys.append(atom_keys)
+    return frozenset(ineq_keys)
+
+
+def deduplicate_constraints(constraints: List[Constraint]) -> List[Constraint]:
+    seen = set()
+    unique = []
+    for c in constraints:
+        key = constraint_key(c)
+        if key not in seen:
+            seen.add(key)
+            unique.append(c)
+    return unique
 
 def compute_set_of_constraints_for_variable(x: Variable, prev_x: Variable, normalised_constraints_at_previous_level: List[Constraint], verbose):
     # create two sets starting from constraints_at_previous_level:
@@ -151,6 +171,9 @@ def compute_set_of_constraints_for_variable(x: Variable, prev_x: Variable, norma
 
     # finally, get the union of constraints which do not contain y (unnormalised_constraints_without_prev U reduced_constr)
     unnormalised_constraints_without_prev.extend(reduced_constr)
+    
+    unnormalised_constraints_without_prev = deduplicate_constraints(unnormalised_constraints_without_prev)
+
 
     # if verbose:
     #     print('\nLEVEL', x.readable())

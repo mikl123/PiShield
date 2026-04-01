@@ -8,7 +8,7 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from pishield.qflra_requirements.classes import Atom, Variable, Constraint, DisjunctInequality
 
-TOLERANCE=1e-2
+TOLERANCE=1e-6
 
 
 def eval_atoms_list(atoms_list: List['Atom'], preds: torch.Tensor, reduction='sum'):

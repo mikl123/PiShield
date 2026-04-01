@@ -3,7 +3,7 @@ import torch
 
 from pishield.qflra_requirements.utils_functions import eval_atoms_list
 
-TOLERANCE=1e-2
+TOLERANCE=1e-6
 
 class Variable():
     def __init__(self, variable: str):

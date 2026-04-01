@@ -3,7 +3,7 @@ import torch
 
 from pishield.linear_requirements.utils import eval_atoms_list
 
-TOLERANCE=1e-2
+TOLERANCE=1e-6
 
 
 class Variable():
