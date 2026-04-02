@@ -125,26 +125,11 @@ def normalise_one_constraint(x: Variable, constraint: Constraint) -> Constraint 
                 totally_normalised_constraint.append(partially_normalised_constraint)
 
     elif len(pos_ineq) > 0 and len(neg_ineq) == 0:
-        for ineq_j in pos_ineq:
-            partially_normalised_inequality_list = normalise_constraint_wrt_selected_ineq(x, [], ineq_j, pos_ineq, sign='positive')
-
-            # extend the partially_normalised_inequality_list with the ineqs in which x did not appear originally
-            partially_normalised_inequality_list.extend(null_ineq)
-
-            # finally return the normalised constraint
-            partially_normalised_constraint = Constraint(partially_normalised_inequality_list)
-            totally_normalised_constraint.append(partially_normalised_constraint)
+        return constraint
 
     elif len(neg_ineq) > 0 and len(pos_ineq) == 0:
-        for ineq_k in neg_ineq:
-            partially_normalised_inequality_list = normalise_constraint_wrt_selected_ineq(x, [], ineq_k, neg_ineq, sign='negative')
-
-            # extend the partially_normalised_inequality_list with the ineqs in which x did not appear originally
-            partially_normalised_inequality_list.extend(null_ineq)
-
-            # finally return the normalised constraint
-            partially_normalised_constraint = Constraint(partially_normalised_inequality_list)
-            totally_normalised_constraint.append(partially_normalised_constraint)
+        # Same as above for negative-only occurrences.
+        return constraint
 
     return totally_normalised_constraint
 

@@ -185,29 +185,29 @@ def compute_set_of_constraints_for_variable(x: Variable, prev_x: Variable, norma
 
 
 def compute_sets_of_constraints(ordering: List[Variable], constraints: List[Constraint], verbose) -> {Variable: List[Constraint]}:
-    print(f' *** ALL CONSTRAINTS ***')
-    for constr in constraints:
-        print(constr.readable())
+    # print(f' *** ALL CONSTRAINTS ***')
+    # for constr in constraints:
+    #     print(constr.readable())
     # reverse the ordering:
     ordering = list(reversed(ordering))
     prev_x = ordering[0]
 
     # add all constraints for the highest ranking variable w.r.t. ordering
     ordered_normalised_constraints = {prev_x: normalise(prev_x, constraints)}
-    print(f' *** Normalised Constraints for {prev_x.readable()} ***')
-    for constr in constraints:
-        print(constr.readable())
+    # print(f' *** Normalised Constraints for {prev_x.readable()} ***')
+    # for constr in constraints:
+    #     print(constr.readable())
 
     for x in ordering[1:]:
         normalised_constraints_at_previous_level = ordered_normalised_constraints[prev_x]
         set_of_constraints = compute_set_of_constraints_for_variable(x, prev_x, normalised_constraints_at_previous_level, verbose)
-        print(f' *** Unnormalised Constraints for {x.readable()} ***')
-        for constr in set_of_constraints:
-            print(constr.readable())
+        # print(f' *** Unnormalised Constraints for {x.readable()} ***')
+        # for constr in set_of_constraints:
+        #     print(constr.readable())
         ordered_normalised_constraints[x] = normalise(x, set_of_constraints)
-        print(f'\n *** Normalised Constraints for {x.readable()} ***')
-        for constr in ordered_normalised_constraints[x]:
-            print(constr.readable())
+        # print(f'\n *** Normalised Constraints for {x.readable()} ***')
+        # for constr in ordered_normalised_constraints[x]:
+        #     print(constr.readable())
         prev_x = x
 
     # print('-'*80)

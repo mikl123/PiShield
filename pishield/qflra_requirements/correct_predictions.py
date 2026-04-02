@@ -397,8 +397,8 @@ def main():
     ordering = set_random_ordering(ordering)
 
     print('verbose constr')
-    for constr in constraints:
-        print(constr.verbose_readable())
+    # for constr in constraints:
+    #     print(constr.verbose_readable())
 
     print('compute sets of constraints')
     sets_of_constr = compute_sets_of_constraints(ordering, constraints, verbose=True)
